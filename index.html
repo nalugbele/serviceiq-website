@@ -254,10 +254,6 @@ a { color: inherit; text-decoration: none; }
   padding: 40px;
   margin-top: 48px;
 }
-.calc-hint {
-  font-size: 13px; font-weight: 500; color: var(--gold);
-  margin-bottom: 16px;
-}
 .calc-inputs {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -287,7 +283,7 @@ a { color: inherit; text-decoration: none; }
 }
 .calc-field input[type="number"]::-webkit-outer-spin-button,
 .calc-field input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
-.calc-field input[type="number"]::placeholder { color: rgba(255,255,255,0.35); }
+.calc-field input[type="number"]::placeholder { color: rgba(255,255,255,0.32); font-weight: 400; }
 .calc-divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 28px; }
 .calc-results {
   display: grid;
@@ -436,6 +432,22 @@ a { color: inherit; text-decoration: none; }
   font-size: 12px; color: var(--gray); margin-top: 16px;
 }
 
+/* ── FAQ ──────────────────────────────────────────────────────────── */
+.faq { background: var(--off); border-top: 1px solid var(--border); }
+.faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.faq-item { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.faq-item summary {
+  list-style: none; cursor: pointer; padding: 20px 24px; font-weight: 600; font-size: 15.5px;
+  color: var(--navy); display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+'; font-size: 20px; font-weight: 400; color: var(--blue); flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-a { padding: 0 24px 22px; font-size: 14.5px; line-height: 1.7; color: var(--gray); }
+
 /* ── SOCIAL PROOF ─────────────────────────────────────────────────── */
 .proof { background: var(--white); padding: 72px 24px; border-top: 1px solid var(--border); }
 .proof-inner { max-width: 900px; margin: 0 auto; }
@@ -488,6 +500,62 @@ footer {
 .reveal.visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does ServiceIQ actually do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ServiceIQ runs three automated workflows for dealership service departments: recovering declined services with AI-drafted, advisor-approved follow-ups; reaching new vehicle buyers before their first service interval expires; and recommending the right services at every booking based on mileage and OEM schedule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does an advisor have to approve messages before they go out?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. For declined service recovery, AI drafts the message and your advisor reviews and approves it before anything sends. Appointment booking language is approved once during setup, then runs automatically at every booking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the investment for the founding pilot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The founding pilot is a one-time $10,000 investment, covering one store across all three workflows over a 6 to 12 month period. Founding dealerships also get a weekly call to provide direct input into the product roadmap."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is ServiceIQ currently available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ServiceIQ is currently accepting founding dealerships in Atlantic Canada, with availability limited to just 10 founding pilot spots."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What results can I expect?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Based on conservative industry estimates, ServiceIQ recovers roughly 40% of missed calls via 24/7 online booking and 31% of declined services via AI-driven recovery sequences. Actual results vary by dealership."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I talk to someone before committing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can book a 20-minute discovery call to ask questions and see if it's a fit, no commitment required."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -498,6 +566,7 @@ footer {
     <a href="#pain">The problem</a>
     <a href="#workflows">Workflows</a>
     <a href="#calculator">Calculator</a>
+    <a href="#faq">FAQ</a>
     <a href="#waitlist">Join the waitlist</a>
     <a href="#waitlist" class="nav-cta">Book a call</a>
   </div>
@@ -624,7 +693,9 @@ footer {
       <p class="section-sub">There are no reliable Canadian-market averages for what your store is leaking. Enter your actual numbers — calls missed, services declined, your hourly rate — and see the real figure for your dealership.</p>
     </div>
     <div class="calc-wrap reveal">
-      <div class="calc-hint">Enter your store numbers below</div>
+      <div class="calc-hint" style="display:flex; align-items:center; gap:8px; margin-bottom:16px; color:var(--gold); font-size:14px; font-weight:600;">
+        Enter your store numbers below
+      </div>
       <div class="calc-inputs">
         <div class="calc-field">
           <div class="calc-field-label">Labour rate ($/hr)</div>
@@ -727,13 +798,49 @@ footer {
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="section faq" id="faq">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-kicker">Questions</div>
+      <h2 class="section-headline">What dealership owners<br>ask us first.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary>What does ServiceIQ actually do?</summary>
+        <div class="faq-a">ServiceIQ runs three automated workflows for dealership service departments: recovering declined services with AI-drafted, advisor-approved follow-ups; reaching new vehicle buyers before their first service interval expires; and recommending the right services at every booking based on mileage and OEM schedule.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Does an advisor have to approve messages before they go out?</summary>
+        <div class="faq-a">Yes. For declined service recovery, AI drafts the message and your advisor reviews and approves it before anything sends. Appointment booking language is approved once during setup, then runs automatically at every booking.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What's the investment for the founding pilot?</summary>
+        <div class="faq-a">The founding pilot is a one-time $10,000 investment, covering one store across all three workflows over a 6 to 12 month period. Founding dealerships also get a weekly call to provide direct input into the product roadmap.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Where is ServiceIQ currently available?</summary>
+        <div class="faq-a">ServiceIQ is currently accepting founding dealerships in Atlantic Canada, with availability limited to just 10 founding pilot spots.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What results can I expect?</summary>
+        <div class="faq-a">Based on conservative industry estimates, ServiceIQ recovers roughly 40% of missed calls via 24/7 online booking and 31% of declined services via AI-driven recovery sequences. Actual results vary by dealership—the calculator on this page estimates your specific numbers.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I talk to someone before committing?</summary>
+        <div class="faq-a">Yes. You can book a 20-minute discovery call to ask questions and see if it's a fit, no commitment required.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- WAITLIST -->
 <section class="section waitlist" id="waitlist">
   <div class="waitlist-inner">
     <div class="reveal">
       <div class="section-kicker" style="text-align:center;">Now accepting founding dealerships</div>
       <h2 class="section-headline" style="text-align:center;">Reserve your spot.<br>Shape the product.</h2>
-      <p class="section-sub" style="margin:0 auto 0; text-align:center;">Founding dealerships get priority access, founding-customer pricing, and direct input into the workflows before they go live.</p>
+      <p class="section-sub" style="margin:0 auto 0; text-align:center;">Founding dealerships get priority access, founding-customer investment terms, and direct input into the workflows before they go live.</p>
     </div>
     <div class="waitlist-card reveal">
       <div id="waitlist-form-wrap">
@@ -807,6 +914,7 @@ footer {
     <a href="#pain">The problem</a>
     <a href="#workflows">Workflows</a>
     <a href="#calculator">Calculator</a>
+    <a href="#faq">FAQ</a>
     <a href="#waitlist">Waitlist</a>
     <a href="mailto:hello@serviceiqai.ca">hello@serviceiqai.ca</a>
   </div>
